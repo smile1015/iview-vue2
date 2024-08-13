@@ -34,7 +34,7 @@ export default {
             this.dispatch('iFromItem', 'on-form-change', value)
         },
         handleBlur() {
-            this.dispatch('iFromItem', 'on-form-blur', this.currentValue)
+            this.dispatch('iFormItem', 'on-form-blur', this.currentValue)
         }
     }
 }

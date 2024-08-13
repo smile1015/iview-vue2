@@ -2,7 +2,7 @@
   <div id="app">
     <i-form :model="model" :rules="rules">
       <i-form-item label="username" prop="username">
-        <i-input></i-input>
+        <i-input ></i-input>
       </i-form-item>
     </i-form>
   </div>
@@ -27,7 +27,7 @@ export default {
       },
       rules: {
         username: [
-          { type: 'string', required: true, trigger: 'blur' }
+          { type: 'string', required: true, message: '用户名必填', trigger: 'blur' }
         ]
       }
     }
