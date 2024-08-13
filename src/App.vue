@@ -1,17 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <i-form :model="model" :rules="rules">
+      <i-form-item label="username" prop="username">
+        <i-input></i-input>
+      </i-form-item>
+    </i-form>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import IForm from '@/components/i-form/i-form.vue'
+import IFormItem from '@/components/i-form/i-form-item.vue'
+import IInput from '@/components/i-input/i-input.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    IForm,
+    IFormItem,
+    IInput
+  },
+  data() {
+    return {
+      model: {
+        username: ''
+      },
+      rules: {
+        username: [
+          { type: 'string', required: true, trigger: 'blur' }
+        ]
+      }
+    }
   }
 }
 </script>
