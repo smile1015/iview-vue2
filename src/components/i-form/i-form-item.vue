@@ -5,7 +5,7 @@
         </label>
         <div>
             <div>
-                <slot></slot>                
+                <slot></slot>
             </div>
             <div v-if="validateState === 'error'" class="i-form-item-message">
                 {{ validateMessage }}
@@ -102,7 +102,7 @@ export default {
             this.validateState = '';
             this.validateMessage = '';
             this.form.model[this.prop] = this.initialValue
-        } 
+        }
     },
     mounted() {
         if (this.prop) {
@@ -122,10 +122,11 @@ export default {
 <style scoped>
 
 .i-form-item {
-    display: flex;
+    padding: 16px;
 }
 
 .i-form-item .i-form-item-label-required {
+    text-align: left;
     position: relative;
 }
 

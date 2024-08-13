@@ -1,9 +1,19 @@
 <template>
   <div id="app">
-    <i-form :model="model" :rules="rules">
-      <i-form-item label="username" prop="username">
-        <i-input ></i-input>
+    <i-form ref="form" :model="model" :rules="rules">
+      <i-form-item label="用户名" prop="username">
+        <i-input v-model="model.username"></i-input>
       </i-form-item>
+      <i-form-item label="邮箱" prop="email">
+        <i-input v-model="model.email"></i-input>
+      </i-form-item>
+
+      <i-form-item prop="agree">
+        <i-checkbox v-model="model.agree" trueValue="Y" falseValue="N">是否同意上述协议</i-checkbox>
+      </i-form-item>
+
+      <button @click="submit">提交</button>
+      <button @click="reset">重置</button>
     </i-form>
   </div>
 </template>
@@ -12,24 +22,53 @@
 import IForm from '@/components/i-form/i-form.vue'
 import IFormItem from '@/components/i-form/i-form-item.vue'
 import IInput from '@/components/i-input/i-input.vue'
+import ICheckbox from '@/components/i-checkbox/i-checkbox.vue'
 
 export default {
   name: 'App',
   components: {
     IForm,
     IFormItem,
-    IInput
+    IInput,
+    ICheckbox
   },
   data() {
     return {
       model: {
-        username: ''
+        username: '',
+        email: '',
+        agree: ''
       },
       rules: {
         username: [
-          { type: 'string', required: true, message: '用户名必填', trigger: 'blur' }
+          { type: 'string', required: true, message: '必须填写用户名', trigger: 'blur' }
+        ],
+        email: [
+          { type: 'email', required: true, message: '必须填写邮箱', trigger: 'blur' }
+        ],
+        agree: [
+          { required: true, message: '请先勾选协议', trigger: 'change' }
         ]
       }
+    }
+  },
+  watch: {
+    'model.agree'() {
+      console.log('model', this.model)
+    }
+  },
+  methods: {
+    submit() {
+      this.$refs.form.validate(valid => {
+        if (valid) {
+          console.log('校验通过')
+        } else {
+          console.log('校验不通过')
+        }
+      })
+    },
+    reset() {
+      this.$refs.form.reset()
     }
   }
 }

@@ -55,7 +55,7 @@ export default {
         // 重置全部数据
         reset() {
             this.fields.forEach(field => {
-                field.reset()
+                field.resetField()
             })
         }
     },
