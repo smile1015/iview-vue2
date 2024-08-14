@@ -1,10 +1,9 @@
-
 // 由一个组件, 向上找到最近的指定组件
 function findComponentUpward(context, componentName) {
     let parent = context.$parent;
     let name = parent.$options.name;
 
-    while(parent && (!name || [componentName].indexOf(name) < 0)) {
+    while (parent && (!name || [componentName].indexOf(name) < 0)) {
         parent = parent.$parent;
 
         if (parent) {
@@ -22,18 +21,18 @@ function findComponentsUpward(context, componentName) {
     if (parent) {
         if (parent.$options.name === componentName) {
             parents.push(parent)
-        } 
+        }
 
         return parents.concat(findComponentsUpward(parent, componentName))
     } else {
         // 递归的出口
-        return [] 
+        return []
     }
 }
 
 // 由一个组件, 向下找到最近的指定组件
 function findComponentDownward(context, componentName) {
-    const children = context.$children;
+    let children = context.$children;
     let child = null;
 
     if (children.length) {
@@ -45,9 +44,9 @@ function findComponentDownward(context, componentName) {
                 child = childItem;
                 break;
             } else {
-                children = findComponentDownward(child, componentName);
-                
-                if (children) {
+                child = findComponentDownward(child, componentName);
+
+                if (child) {
                     break
                 }
             }
@@ -62,7 +61,7 @@ function findComponentsDownward(context, componentName) {
     return context.$children.reduce((components, child) => {
         if (child.$options.name === componentName) {
             components.push(child);
-        } 
+        }
 
         const foundChildren = findComponentsDownward(child, componentName);
         return components.concat(foundChildren)
@@ -84,5 +83,11 @@ function findBrothersComponents(context, componentName, expectMe = true) {
     return res;
 }
 
-export {findComponentUpward, findComponentsUpward, findComponentDownward, findComponentsDownward, findBrothersComponents}
+export {
+    findComponentUpward,
+    findComponentsUpward,
+    findComponentDownward,
+    findComponentsDownward,
+    findBrothersComponents
+}
 

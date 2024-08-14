@@ -12,9 +12,18 @@
         <i-checkbox v-model="model.agree" trueValue="Y" falseValue="N">是否同意上述协议</i-checkbox>
       </i-form-item>
 
+      <i-form-item prop="habit">
+        <i-checkbox-group v-model="model.habits">
+          <i-checkbox label="eat">吃饭</i-checkbox>
+          <i-checkbox label="sleep">睡觉</i-checkbox>
+        </i-checkbox-group>
+      </i-form-item>
+
       <button @click="submit">提交</button>
       <button @click="reset">重置</button>
     </i-form>
+
+    {{ model }}
   </div>
 </template>
 
@@ -23,10 +32,12 @@ import IForm from '@/components/i-form/i-form.vue'
 import IFormItem from '@/components/i-form/i-form-item.vue'
 import IInput from '@/components/i-input/i-input.vue'
 import ICheckbox from '@/components/i-checkbox/i-checkbox.vue'
+import ICheckboxGroup from "@/components/i-checkbox/i-checkbox-group.vue";
 
 export default {
   name: 'App',
   components: {
+    ICheckboxGroup,
     IForm,
     IFormItem,
     IInput,
@@ -37,7 +48,8 @@ export default {
       model: {
         username: '',
         email: '',
-        agree: ''
+        agree: 'N',
+        habits: []
       },
       rules: {
         username: [
