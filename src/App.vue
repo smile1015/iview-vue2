@@ -19,6 +19,13 @@
         </i-checkbox-group>
       </i-form-item>
 
+      <i-form-item prop="sex">
+        <i-radio-group v-model="model.sex">
+          <i-radio label="man">男</i-radio>
+          <i-radio label="woman">女</i-radio>
+        </i-radio-group>
+      </i-form-item>
+
       <button @click="submit">提交</button>
       <button @click="reset">重置</button>
     </i-form>
@@ -33,10 +40,14 @@ import IFormItem from '@/components/i-form/i-form-item.vue'
 import IInput from '@/components/i-input/i-input.vue'
 import ICheckbox from '@/components/i-checkbox/i-checkbox.vue'
 import ICheckboxGroup from "@/components/i-checkbox/i-checkbox-group.vue";
+import IRadioGroup from "@/components/i-radio/i-radio-group.vue";
+import IRadio from "@/components/i-radio/i-radio.vue";
 
 export default {
   name: 'App',
   components: {
+    IRadio,
+    IRadioGroup,
     ICheckboxGroup,
     IForm,
     IFormItem,
@@ -49,7 +60,8 @@ export default {
         username: '',
         email: '',
         agree: 'N',
-        habits: []
+        habits: [],
+        sex: 'woman'
       },
       rules: {
         username: [
