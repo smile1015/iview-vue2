@@ -29,8 +29,11 @@
       <button @click="submit">提交</button>
       <button @click="reset">重置</button>
     </i-form>
-
     {{ model }}
+    <div>
+
+      <i-display :code="code"></i-display>
+    </div>
   </div>
 </template>
 
@@ -42,10 +45,13 @@ import ICheckbox from '@/components/i-checkbox/i-checkbox.vue'
 import ICheckboxGroup from "@/components/i-checkbox/i-checkbox-group.vue";
 import IRadioGroup from "@/components/i-radio/i-radio-group.vue";
 import IRadio from "@/components/i-radio/i-radio.vue";
+import IDisplay from "@/components/i-display/display.vue";
+import defaultCode from '@/view/default-code'
 
 export default {
   name: 'App',
   components: {
+    IDisplay,
     IRadio,
     IRadioGroup,
     ICheckboxGroup,
@@ -56,6 +62,7 @@ export default {
   },
   data() {
     return {
+      code: defaultCode,
       model: {
         username: '',
         email: '',
